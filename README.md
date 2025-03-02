@@ -47,3 +47,9 @@ To store the manga data, we will create the following database tables:
 #### Integration
 
 The data pulled from the Jikan API will be used to populate the `mangas`, `characters`, `genres`, `manga_genres`, and `authors` tables in the database. Each manga entry will include information about its title, synopsis, genres, chapters, authors, and publication dates. The characters associated with each manga will be stored in the `characters` table, and the genres will be stored in the `genres` table. The `manga_genres` join table will establish the many-to-many relationship between mangas and genres. The `authors` table will store information about the authors of each manga.
+
+### 1.2 - Database ERD
+
+## Entity-Relationship Diagram
+
+![ERD](./images/erd.png)
