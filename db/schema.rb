@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_03_040114) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_03_141647) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.integer "manga_id", null: false
@@ -34,6 +34,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_03_040114) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "manga_authors", force: :cascade do |t|
+    t.integer "manga_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_manga_authors_on_author_id"
+    t.index ["manga_id"], name: "index_manga_authors_on_manga_id"
+  end
+
   create_table "manga_genres", force: :cascade do |t|
     t.integer "manga_id", null: false
     t.integer "genre_id", null: false
@@ -54,6 +63,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_03_040114) do
 
   add_foreign_key "authors", "mangas"
   add_foreign_key "characters", "mangas"
+  add_foreign_key "manga_authors", "authors"
+  add_foreign_key "manga_authors", "mangas"
   add_foreign_key "manga_genres", "genres"
   add_foreign_key "manga_genres", "mangas"
 end
