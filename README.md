@@ -52,7 +52,7 @@ The data pulled from the Jikan API will be used to populate the `mangas`, `chara
 
 ## Entity-Relationship Diagram
 
-![ERD](./images/erd.png)
+![ERD](app/assets/images/erd.png)
 
 ### 1.7 - Data Sources
 
