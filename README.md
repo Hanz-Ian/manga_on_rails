@@ -53,3 +53,45 @@ The data pulled from the Jikan API will be used to populate the `mangas`, `chara
 ## Entity-Relationship Diagram
 
 ![ERD](./images/erd.png)
+
+### 1.7 - Data Sources
+
+The `seeds.rb` script is used to pull in data from 2 sources into the database. The primary data source is the Jikan API, which provides detailed information about mangas. Additionally, the Faker gem will also be used to generate data for missing fields and for testing.
+
+## Models
+
+### Manga Model
+- `id` (auto increment PK)
+- `title` (string)
+- `synopsis` (text)
+- `chapters` (integer)
+- `release_date` (date)
+- Will also be part of the many-to-many relationship with Genre
+
+### Character Model
+- `id` (auto increment PK)
+- `name` (string)
+- `role` (string)
+- `manga_id` (integer, FK)
+
+### Genre Model
+- `id` (auto increment PK)
+- `name` (string)
+- Will also be part of the many-to-many relationship with Manga
+
+### MangaGenre Model
+- `manga_id` (integer, FK)
+- `genre_id` (integer, FK)
+
+### Author Model
+- `id` (auto increment PK)
+- `name` (string)
+- `manga_id` (integer, FK)
+
+## Our many-to-many relationship
+
+We will end up with a table like this for our Manga to Genre relationship:
+
+### MangaGenres Table
+- `manga_id` (integer, FK)
+- `genre_id` (integer, FK)
