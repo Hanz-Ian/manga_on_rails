@@ -28,6 +28,7 @@ client = JikanClient.new
 # Clear existing data
 MangaGenre.delete_all
 Character.delete_all
+MangaAuthor.delete_all
 Author.delete_all
 Genre.delete_all
 Manga.delete_all
@@ -142,3 +143,4 @@ puts "Total Characters created: #{Character.count}"
 puts "Total Authors created: #{Author.count}"
 puts "Total Genres created: #{Genre.count}"
 puts "Total MangaGenres created: #{MangaGenre.count}"
+puts "Total MangaAuthors created: #{MangaAuthor.count}"
