@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_02_235204) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_02_235617) do
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.integer "manga_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manga_id"], name: "index_authors_on_manga_id"
+  end
+
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "role"
@@ -45,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_02_235204) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "authors", "mangas"
   add_foreign_key "characters", "mangas"
   add_foreign_key "manga_genres", "genres"
   add_foreign_key "manga_genres", "mangas"
