@@ -44,9 +44,13 @@ To store the manga data, we will create the following database tables:
    - `name` (string): The name of the author.
    - `manga_id` (integer): Foreign key to the `mangas` table.
 
+6. **MangaAuthors Table** (Join table for many-to-many relationship between mangas and authors)
+   - `manga_id` (integer): Foreign key to the `mangas` table.
+   - `author_id` (integer): Foreign key to the `authors` table.
+
 #### Integration
 
-The data pulled from the Jikan API will be used to populate the `mangas`, `characters`, `genres`, `manga_genres`, and `authors` tables in the database. Each manga entry will include information about its title, synopsis, genres, chapters, authors, and publication dates. The characters associated with each manga will be stored in the `characters` table, and the genres will be stored in the `genres` table. The `manga_genres` join table will establish the many-to-many relationship between mangas and genres. The `authors` table will store information about the authors of each manga.
+The data pulled from the Jikan API will be used to populate the `mangas`, `characters`, `genres`, `manga_genres`, `authors`, and `manga_authors` tables in the database. Each manga entry will include information about its title, synopsis, genres, chapters, authors, and publication dates. The characters associated with each manga will be stored in the `characters` table, and the genres will be stored in the `genres` table. The `manga_genres` join table will establish the many-to-many relationship between mangas and genres. The `manga_authors` join table will establish the many-to-many relationship between mangas and authors.
 
 ### 1.2 - Database ERD
 
@@ -88,6 +92,10 @@ The `seeds.rb` script is used to pull in data from 2 sources into the database. 
 - `name` (string)
 - `manga_id` (integer, FK)
 
+### MangaAuthor Model
+- `manga_id` (integer, FK)
+- `author_id` (integer, FK)
+
 ## Our many-to-many relationship
 
 We will end up with a table like this for our Manga to Genre relationship:
@@ -95,3 +103,7 @@ We will end up with a table like this for our Manga to Genre relationship:
 ### MangaGenres Table
 - `manga_id` (integer, FK)
 - `genre_id` (integer, FK)
+
+### MangaAuthors Table
+- `manga_id` (integer, FK)
+- `author_id` (integer, FK)
