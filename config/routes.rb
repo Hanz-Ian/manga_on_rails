@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "characters/show"
   get "genres/index"
   get "genres/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   resources :mangas, only: [:index, :show]
   resources :authors, only: [:index, :show]
   resources :genres, only: [:index, :show]
+  resources :characters, only: [:show]
   get 'about', to: 'pages#about'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

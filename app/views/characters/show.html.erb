@@ -1,0 +1,6 @@
+<h1><%= @character.name %></h1>
+
+<p><strong>Role:</strong> <%= @character.role %></p>
+
+<h2>Manga Appearances</h2>
+<p><%= link_to @manga.title, manga_path(@manga) %></p>
