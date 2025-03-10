@@ -1,9 +1,143 @@
-<h1>About</h1>
-<p>This web application uses data from the following sources:</p>
-<ul>
-  <li>Jikan API: A RESTful API for MyAnimeList</li>
-  <li>Faker: A Library for generating data</li>
-</ul>
+<!-- filepath: c:\fullstack\Rails\manga_on_rails\app\views\pages\about.html.erb -->
+<div class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Manga on Rails Data Project</h1>
+    <p class="subtitle has-text-centered">Made by Hanz Samonte</p>
+    <p class="has-text-centered">
+      <a href="https://github.com/Hanz-Ian/manga_on_rails" class="button is-link">View on GitHub!</a>
+    </p>
 
-<h2>Entity-Relationship Diagram (ERD)</h2>
-<%= image_tag 'erd.png', alt: 'ERD' %>
+    <div class="content">
+      <h2>1 - Gathering and Storing Data</h2>
+
+      <h3>1.1 - Describe Datasets</h3>
+      <p>I'll be using the Jikan API to gather data about mangas. The Jikan API is an unofficial MyAnimeList API that provides access to detailed information about mangas, including their titles, synopses, genres, chapters, authors, publication dates, and characters.</p>
+
+      <h4>Data Structure</h4>
+      <p>The data from the Jikan API is structured in JSON format and includes the following key fields:</p>
+      <ul>
+        <li><code>title</code>: The title of the manga.</li>
+        <li><code>synopsis</code>: A brief description of the manga.</li>
+        <li><code>genres</code>: An array of genres associated with the manga.</li>
+        <li><code>chapters</code>: The number of chapters in the manga.</li>
+        <li><code>authors</code>: An array of authors who worked on the manga.</li>
+        <li><code>published</code>: The publication dates of the manga.</li>
+        <li><code>characters</code>: An array of characters associated with the manga.</li>
+      </ul>
+
+      <h4>Required Database Tables and Columns</h4>
+      <p>To store the manga data, we will create the following database tables:</p>
+      <ul>
+        <li><strong>Mangas Table</strong>
+          <ul>
+            <li><code>title</code> (string): The title of the manga.</li>
+            <li><code>synopsis</code> (text): A brief description of the manga.</li>
+            <li><code>genre</code> (string): A comma-separated list of genres.</li>
+            <li><code>chapters</code> (integer): The number of chapters in the manga.</li>
+            <li><code>release_date</code> (date): The publication start date of the manga.</li>
+          </ul>
+        </li>
+        <li><strong>Characters Table</strong>
+          <ul>
+            <li><code>name</code> (string): The name of the character.</li>
+            <li><code>description</code> (text): A brief description of the character.</li>
+            <li><code>manga_id</code> (integer): Foreign key to the <code>mangas</code> table.</li>
+          </ul>
+        </li>
+        <li><strong>Genres Table</strong>
+          <ul>
+            <li><code>name</code> (string): The name of the genre.</li>
+          </ul>
+        </li>
+        <li><strong>MangaGenres Table</strong> (Join table for many-to-many relationship between mangas and genres)
+          <ul>
+            <li><code>manga_id</code> (integer): Foreign key to the <code>mangas</code> table.</li>
+            <li><code>genre_id</code> (integer): Foreign key to the <code>genres</code> table.</li>
+          </ul>
+        </li>
+        <li><strong>Authors Table</strong>
+          <ul>
+            <li><code>name</code> (string): The name of the author.</li>
+            <li><code>manga_id</code> (integer): Foreign key to the <code>mangas</code> table.</li>
+          </ul>
+        </li>
+        <li><strong>MangaAuthors Table</strong> (Join table for many-to-many relationship between mangas and authors)
+          <ul>
+            <li><code>manga_id</code> (integer): Foreign key to the <code>mangas</code> table.</li>
+            <li><code>author_id</code> (integer): Foreign key to the <code>authors</code> table.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Integration</h4>
+      <p>The data pulled from the Jikan API will be used to populate the <code>mangas</code>, <code>characters</code>, <code>genres</code>, <code>manga_genres</code>, <code>authors</code>, and <code>manga_authors</code> tables in the database. Each manga entry will include information about its title, synopsis, genres, chapters, authors, and publication dates. The characters associated with each manga will be stored in the <code>characters</code> table, and the genres will be stored in the <code>genres</code> table. The <code>manga_genres</code> join table will establish the many-to-many relationship between mangas and genres. The <code>manga_authors</code> join table will establish the many-to-many relationship between mangas and authors.</p>
+
+      <h3>1.2 - Database ERD</h3>
+      <h2>Entity-Relationship Diagram</h2>
+      <%= image_tag 'erd.png', alt: 'ERD' %>
+
+      <h3>1.7 - Data Sources</h3>
+      <p>The <code>seeds.rb</code> script is used to pull in data from 2 sources into the database. The primary data source is the Jikan API, which provides detailed information about mangas. Additionally, the Faker gem will also be used to generate data for missing fields and for testing.</p>
+
+      <h2>Models</h2>
+      <h3>Manga Model</h3>
+      <ul>
+        <li><code>id</code> (auto increment PK)</li>
+        <li><code>title</code> (string)</li>
+        <li><code>synopsis</code> (text)</li>
+        <li><code>chapters</code> (integer)</li>
+        <li><code>release_date</code> (date)</li>
+        <li>Will also be part of the many-to-many relationship with Genre</li>
+      </ul>
+
+      <h3>Character Model</h3>
+      <ul>
+        <li><code>id</code> (auto increment PK)</li>
+        <li><code>name</code> (string)</li>
+        <li><code>role</code> (string)</li>
+        <li><code>manga_id</code> (integer, FK)</li>
+      </ul>
+
+      <h3>Genre Model</h3>
+      <ul>
+        <li><code>id</code> (auto increment PK)</li>
+        <li><code>name</code> (string)</li>
+        <li>Will also be part of the many-to-many relationship with Manga</li>
+      </ul>
+
+      <h3>MangaGenre Model</h3>
+      <ul>
+        <li><code>manga_id</code> (integer, FK)</li>
+        <li><code>genre_id</code> (integer, FK)</li>
+      </ul>
+
+      <h3>Author Model</h3>
+      <ul>
+        <li><code>id</code> (auto increment PK)</li>
+        <li><code>name</code> (string)</li>
+        <li><code>manga_id</code> (integer, FK)</li>
+      </ul>
+
+      <h3>MangaAuthor Model</h3>
+      <ul>
+        <li><code>manga_id</code> (integer, FK)</li>
+        <li><code>author_id</code> (integer, FK)</li>
+      </ul>
+
+      <h2>Our many-to-many relationship</h2>
+      <p>We will end up with a table like this for our Manga to Genre relationship:</p>
+
+      <h3>MangaGenres Table</h3>
+      <ul>
+        <li><code>manga_id</code> (integer, FK)</li>
+        <li><code>genre_id</code> (integer, FK)</li>
+      </ul>
+
+      <h3>MangaAuthors Table</h3>
+      <ul>
+        <li><code>manga_id</code> (integer, FK)</li>
+        <li><code>author_id</code> (integer, FK)</li>
+      </ul>
+    </div>
+  </div>
+</div>
