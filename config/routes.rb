@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get "characters/show"
-  get "genres/index"
-  get "genres/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'mangas#index'
-  resources :mangas, only: [:index, :show]
+  resources :mangas, only: [:index, :show] do
+    collection do
+      get 'search_results'
+    end
+  end
   resources :authors, only: [:index, :show]
   resources :genres, only: [:index, :show]
   resources :characters, only: [:show]

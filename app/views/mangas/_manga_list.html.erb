@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to manga.title, manga_path(manga) %></td>
+  <td>
+    <% manga.authors.each do |author| %>
+        <%# Iterate over the author's names, adds comma and space for each author name unless it's the last author %>
+      <%= link_to author.name, author_path(author) %><%= ", " unless author == manga.authors.last %>
+    <% end %>
+  </td>
+  <td><%= manga.release_date %></td>
+</tr>
