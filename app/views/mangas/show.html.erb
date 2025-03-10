@@ -1,0 +1,28 @@
+<%= link_to 'Back to All Mangas', mangas_path %>
+<h1><%= @manga.title %></h1>
+
+
+<p><strong>Synopsis:</strong> <%= @manga.synopsis %></p>
+<p><strong>Chapters:</strong> <%= @manga.chapters %></p>
+<p><strong>Release Date:</strong> <%= @manga.release_date %></p>
+
+<h2>Authors</h2>
+<ul>
+  <% @manga.authors.each do |author| %>
+    <li><%= author.name %></li>
+  <% end %>
+</ul>
+
+<h2>Genres</h2>
+<ul>
+  <% @manga.genres.each do |genre| %>
+    <li><%= genre.name %></li>
+  <% end %>
+</ul>
+
+<h2>Characters</h2>
+<ul>
+  <% @manga.characters.each do |character| %>
+    <li><%= character.name %> - <%= character.role %></li>
+  <% end %>
+</ul>

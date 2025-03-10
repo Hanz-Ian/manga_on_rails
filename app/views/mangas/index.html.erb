@@ -1,0 +1,22 @@
+<h1>All Mangas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Synopsis</th>
+      <th>Chapters</th>
+      <th>Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mangas.each do |manga| %>
+      <tr>
+        <td><%= link_to manga.title, manga_path(manga) %></td>
+        <td><%= manga.synopsis %></td>
+        <td><%= manga.chapters %></td>
+        <td><%= manga.release_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

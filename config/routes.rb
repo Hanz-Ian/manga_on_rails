@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'mangas#index'
+  resources :mangas, only: [:index, :show]
   get 'about', to: 'pages#about'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
