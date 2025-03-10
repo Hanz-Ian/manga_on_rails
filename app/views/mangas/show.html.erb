@@ -9,14 +9,14 @@
 <h2>Authors</h2>
 <ul>
   <% @manga.authors.each do |author| %>
-    <li><%= author.name %></li>
+    <li><%= link_to author.name, author_path(author) %></li>
   <% end %>
 </ul>
 
 <h2>Genres</h2>
 <ul>
   <% @manga.genres.each do |genre| %>
-    <li><%= genre.name %></li>
+    <li><%= link_to genre.name, genre_path(genre) %></li>
   <% end %>
 </ul>
 

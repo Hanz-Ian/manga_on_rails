@@ -4,7 +4,7 @@
 <h2>Mangas</h2>
 <ul>
   <% @author.mangas.each do |manga| %>
-    <li><%= manga.title %></li>
+    <li><%= link_to manga.title, manga_path(manga) %></li>
   <% end %>
 </ul>
 
