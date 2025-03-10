@@ -1,0 +1,10 @@
+<%= link_to 'Back to All Authors', authors_path %>
+<h1><%= @author.name %></h1>
+
+<h2>Mangas</h2>
+<ul>
+  <% @author.mangas.each do |manga| %>
+    <li><%= manga.title %></li>
+  <% end %>
+</ul>
+

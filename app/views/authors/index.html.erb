@@ -1,0 +1,16 @@
+<h1>All Authors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= link_to author.name, author_path(author) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
