@@ -1,9 +1,20 @@
-<%= link_to 'Back to All Authors', authors_path %>
-<h1><%= @author.name %></h1>
-<h2>Mangas</h2>
-<ul>
-  <% @author.mangas.each do |manga| %>
-    <li><%= link_to manga.title, manga_path(manga) %></li>
-  <% end %>
-</ul>
+<div class="section">
+  <div class="container">
+    <%= link_to 'Back to All Authors', authors_path, class: 'button is-small is-light' %>
+    <h1 class="title has-text-centered"><%= @author.name %></h1>
+
+    <div class="content">
+      <h2 class="subtitle has-text-centered">Mangas</h2>
+      <div class="buttons is-centered">
+        <% if @author.mangas.any? %>
+          <% @author.mangas.each do |manga| %>
+            <%= link_to manga.title, manga_path(manga), class: 'button is-link is-light' %>
+          <% end %>
+        <% else %>
+          <span>No mangas available</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 

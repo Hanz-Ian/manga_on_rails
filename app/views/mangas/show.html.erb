@@ -1,39 +1,46 @@
-<%= link_to 'Back to All Mangas', mangas_path %>
-<h1><%= @manga.title %></h1>
+<div class="section">
+  <div class="container">
+    <%= link_to 'Back to All Mangas', mangas_path, class: 'button is-small is-light' %>
+    <h1 class="title has-text-centered"><%= @manga.title %></h1>
 
-<p><strong>Synopsis:</strong> <%= @manga.synopsis %></p>
-<p><strong>Chapters:</strong> <%= @manga.chapters %></p>
-<p><strong>Release Date:</strong> <%= @manga.release_date %></p>
+    <div class="content">
+      <p><strong>Synopsis:</strong> <%= @manga.synopsis %></p>
+      <p><strong>Chapters:</strong> <%= @manga.chapters %></p>
+      <p><strong>Release Date:</strong> <%= @manga.release_date %></p>
 
-<h2>Authors</h2>
-<ul>
-  <% if @manga.authors.any? %>
-    <% @manga.authors.each do |author| %>
-      <li><%= link_to author.name, author_path(author) %></li>
-    <% end %>
-  <% else %>
-    <li>No authors available</li>
-  <% end %>
-</ul>
+      <h2 class="subtitle has-text-centered">Authors</h2>
+      <div class="buttons is-centered">
+        <% if @manga.authors.any? %>
+          <% @manga.authors.each do |author| %>
+            <%= link_to author.name, author_path(author), class: 'button is-link is-light' %>
+          <% end %>
+        <% else %>
+          <span>No authors available</span>
+        <% end %>
+      </div>
 
-<h2>Genres</h2>
-<ul>
-  <% if @manga.genres.any? %>
-    <% @manga.genres.each do |genre| %>
-      <li><%= link_to genre.name, genre_path(genre) %></li>
-    <% end %>
-  <% else %>
-    <li>No genres available</li>
-  <% end %>
-</ul>
+      <h2 class="subtitle has-text-centered">Genres</h2>
+      <div class="buttons is-centered">
+        <% if @manga.genres.any? %>
+          <% @manga.genres.each do |genre| %>
+            <%= link_to genre.name, genre_path(genre), class: 'button is-link is-light' %>
+          <% end %>
+        <% else %>
+          <span>No genres available</span>
+        <% end %>
+      </div>
 
-<h2>Characters</h2>
-<ul>
-  <% if @manga.characters.any? %>
-    <% @manga.characters.each do |character| %>
-      <li><%= link_to "#{character.name} - #{character.role}", character_path(character) %></li>
-    <% end %>
-  <% else %>
-    <li>No characters available</li>
-  <% end %>
-</ul>
+      <h2 class="subtitle has-text-centered">Characters</h2>
+      <div class="buttons is-centered">
+        <% if @manga.characters.any? %>
+          <% @manga.characters.each do |character| %>
+            <%= link_to "#{character.name} - #{character.role}", character_path(character), class: 'button is-link is-light' %>
+          <% end %>
+        <% else %>
+          <span>No characters available</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

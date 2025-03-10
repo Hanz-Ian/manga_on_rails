@@ -1,7 +1,7 @@
-<%= link_to 'Back to All Genres', genres_path %>
-<h1><%= @genre.name %> Mangas</h1>
+<%= link_to 'Back to All Genres', genres_path, class: 'button is-small is-light' %>
+<h1 class="title has-text-centered"><%= @genre.name %> Mangas</h1>
 
-<table>
+<table class="table is-fullwidth is-striped">
   <thead>
     <tr>
       <th>Title</th>
