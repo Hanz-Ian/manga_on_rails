@@ -3,7 +3,8 @@
         <%= link_to 'Back to Manga', manga_path(@manga), class: 'button is-small is-light' %>
     <h1 class="title has-text-centered"><%= @character.name %></h1>
 
-    <div class="content">
+    <div class="content has-text-centered">
+      <%= image_tag @character.image_url, alt: @character.name if @character.image_url.present? %>
       <p><strong>Role:</strong> <%= @character.role %></p>
       <h2 class="subtitle has-text-centered">Manga Appearances</h2>
       <div class="buttons is-centered">

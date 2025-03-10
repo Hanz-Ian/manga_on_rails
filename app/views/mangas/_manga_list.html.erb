@@ -1,4 +1,5 @@
 <tr>
+  <td><%= image_tag manga.small_image_url, alt: manga.title if manga.small_image_url.present? %></td>
   <td><%= link_to manga.title, manga_path(manga), class: 'has-text-link' %></td>
   <td>
     <% manga.authors.each do |author| %>

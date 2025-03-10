@@ -3,7 +3,8 @@
     <%= link_to 'Back to All Mangas', mangas_path, class: 'button is-small is-light' %>
     <h1 class="title has-text-centered"><%= @manga.title %></h1>
 
-    <div class="content">
+    <div class="content has-text-centered">
+      <%= image_tag @manga.large_image_url, alt: @manga.title if @manga.large_image_url.present? %>
       <p><strong>Synopsis:</strong> <%= @manga.synopsis %></p>
       <p><strong>Chapters:</strong> <%= @manga.chapters %></p>
       <p><strong>Release Date:</strong> <%= @manga.release_date %></p>

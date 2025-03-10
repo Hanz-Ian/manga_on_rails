@@ -54,7 +54,10 @@ inappropriate_genres = ["Ecchi", "Erotica"]
       title: manga_data['title'],
       synopsis: manga_data['synopsis'].presence || Faker::Lorem.paragraph, # If null, use Faker
       chapters: manga_data['chapters'].presence || Faker::Number.between(from: 1, to: 100), # If null, use Faker
-      release_date: manga_data['published']['from'].presence || Faker::Date.between(from: '2000-01-01', to: '2020-12-31') # If Null, use Faker
+      release_date: manga_data['published']['from'].presence || Faker::Date.between(from: '2000-01-01', to: '2020-12-31'), # If Null, use Faker
+      image_url: manga_data['images']['jpg']['image_url'],
+      small_image_url: manga_data['images']['jpg']['small_image_url'],
+      large_image_url: manga_data['images']['jpg']['large_image_url']
     )
 
     # If the object is saved successfully, create the other objects
@@ -72,7 +75,8 @@ inappropriate_genres = ["Ecchi", "Erotica"]
           Character.create(
             name: character_data['character']['name'],
             role: character_data['role'],
-            manga: manga
+            manga: manga,
+            image_url: character_data['character']['images']['jpg']['image_url']
           )
         end
       end
@@ -108,7 +112,10 @@ end
     title: Faker::Book.title,
     synopsis: Faker::Lorem.paragraph,
     chapters: Faker::Number.between(from: 1, to: 100),
-    release_date: Faker::Date.between(from: '2000-01-01', to: '2025-03-02')
+    release_date: Faker::Date.between(from: '2000-01-01', to: '2025-03-02'),
+    image_url: Faker::LoremFlickr.image(size: "300x400", search_terms: ['manga']),
+    small_image_url: Faker::LoremFlickr.image(size: "150x200", search_terms: ['manga']),
+    large_image_url: Faker::LoremFlickr.image(size: "600x800", search_terms: ['manga'])
   )
 
   # If the object is saved successfully, create other objects using Faker
@@ -118,7 +125,8 @@ end
       Character.create(
         name: Faker::Name.name,
         role: Faker::Job.title,
-        manga: manga
+        manga: manga,
+        image_url: Faker::LoremFlickr.image(size: "150x200", search_terms: ['character'])
       )
     end
 
